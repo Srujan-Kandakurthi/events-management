@@ -1,0 +1,1 @@
+export const  EVENT_NAME: string = "MEGA EVENTS";
