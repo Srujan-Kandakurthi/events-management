@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import Footer from "@/components/layout/footer";
 import { montserrat, playfairDisplay } from "@/lib/fonts";
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-surface text-on-surface">
+        <ScrollToTop />
         <Header />
         <main className="flex-1 font-body-md text-body-md">{children}</main>
         <Footer />

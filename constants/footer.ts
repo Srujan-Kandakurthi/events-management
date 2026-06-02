@@ -69,7 +69,7 @@ export const FOOTER_CONTACT_ITEMS: readonly FooterContactItem[] = [
 ] as const;
 
 export const FOOTER_SOCIAL_LINKS: readonly FooterSocialLink[] = [
-  { label: "Instagram", href: "https://instagram.com", icon: InstagramIcon },
+  { label: "Instagram", href: "https://www.instagram.com/megaevents_nzb", icon: InstagramIcon },
   { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
   { label: "Twitter", href: "https://twitter.com", icon: TwitterIcon },
   { label: "Email", href: "mailto:megaevents.contact@gmail.com", icon: MailIcon },

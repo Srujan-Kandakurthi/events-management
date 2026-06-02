@@ -352,6 +352,17 @@
     box-shadow: 0 8px 24px rgb(0 0 0 / 45%);
   }
 
+  .expertise-card {
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .expertise-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 45%);
+  }
+
   .gold-text-gradient {
     display: inline-block;
     padding-right: 0.12em;
