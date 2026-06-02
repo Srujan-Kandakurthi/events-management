@@ -23,14 +23,14 @@ const ServiceMenuCard = forwardRef<HTMLAnchorElement, ServiceMenuCardProps>(
         href={href}
         onClick={onNavigate}
         className={cn(
-          "group flex h-full min-h-[7.25rem] gap-3.5 p-4 transition-transform duration-300 hover:-translate-y-0.5",
-          isDark ? "card-dark-solid" : "glass-card",
+          "group flex h-full min-h-[7.25rem] gap-3.5 py-5 pr-5 pl-0 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5",
+          isDark ? "service-nav-card" : "glass-card",
           className,
         )}
       >
         <span
           className={cn(
-            "flex size-10 shrink-0 items-center justify-center border text-secondary-fixed",
+            "ml-5 flex size-10 shrink-0 items-center justify-center border text-secondary-fixed",
             isDark
               ? "border-secondary-fixed/40 bg-surface"
               : "border-secondary-fixed/30 bg-surface-container-high",

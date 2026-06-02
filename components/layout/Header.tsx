@@ -81,7 +81,7 @@ function ServicesMenuHeader({ onClose }: { onClose?: () => void }) {
       <Link
         href="/services"
         onClick={onClose}
-        className="inline-flex shrink-0 items-center gap-1.5 bg-secondary-fixed px-3.5 py-2 font-label-sm text-label-sm font-semibold text-on-primary uppercase transition-opacity hover:opacity-90"
+        className="inline-flex shrink-0 items-center gap-1 font-label-sm text-label-sm font-medium text-secondary-fixed uppercase transition-colors hover:text-on-surface"
       >
         View all
         <ArrowRight className="size-3.5" strokeWidth={2.25} aria-hidden />
@@ -131,12 +131,12 @@ function ServicesMegaMenu({
               <li key={service.id} className="flex h-full">
                 <NavigationMenuLink
                   asChild
-                  className="services-menu-link h-full w-full"
+                  className="services-menu-link h-full w-full ring-0 focus-visible:ring-0"
                 >
                   <ServiceMenuCard
                     {...service}
                     variant="dark"
-                    className="w-full p-5"
+                    className="w-full"
                     onNavigate={onClose}
                   />
                 </NavigationMenuLink>
@@ -267,7 +267,7 @@ export default function Header() {
                                 {...service}
                                 variant="dark"
                                 onNavigate={() => setMenuOpen(false)}
-                                className="w-full p-5"
+                                className="w-full"
                               />
                             </li>
                           ))}

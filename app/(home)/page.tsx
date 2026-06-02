@@ -1,5 +1,11 @@
+import BeforeAfterSlider from "@/components/home/BeforeAfterSlider";
 import Hero from "@/components/home/Hero";
 
 export default function Home() {
-  return <Hero />;
+  return (
+    <>
+      <Hero />
+      <BeforeAfterSlider />
+    </>
+  );
 }

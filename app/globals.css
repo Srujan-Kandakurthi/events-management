@@ -304,6 +304,23 @@
       inset 0 1px 0 rgb(255 255 255 / 35%);
   }
 
+  .service-nav-card {
+    background-color: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.3s ease;
+  }
+
+  .service-nav-card:hover {
+    background-color: #21262d;
+    border-color: #d4af37;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 45%);
+  }
+
   .card-dark-solid {
     background-color: #161b22;
     border: 1px solid #484f58;
@@ -320,15 +337,19 @@
   }
 
   .services-menu-link {
-    background: transparent !important;
-    padding: 0 !important;
     border-radius: 0 !important;
   }
 
-  .services-menu-link:hover,
-  .services-menu-link:focus,
-  .services-menu-link[data-active] {
-    background: transparent !important;
+  a.services-menu-link.service-nav-card {
+    padding: 1.25rem 1.25rem 1.25rem 0 !important;
+  }
+
+  a.services-menu-link.service-nav-card:hover,
+  a.services-menu-link.service-nav-card:focus-visible,
+  a.services-menu-link.service-nav-card[data-active] {
+    background-color: #21262d !important;
+    border-color: #d4af37 !important;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 45%);
   }
 
   .gold-text-gradient {
