@@ -41,28 +41,30 @@ export const FOOTER_CONTACT_ITEMS: readonly FooterContactItem[] = [
     id: "email",
     label: "EMAIL US",
     icon: Mail,
-    lines: ["concierge@megaevents.com"],
+    lines: ["megaevents.contact@gmail.com"],
   },
   {
     id: "phone",
     label: "CALL US",
     icon: Phone,
-    lines: ["+91 98765 43210", "+91 91234 56789"],
+    lines: ["+91 92461 11116", "+91 79015 28809", "+91 94921 40290"],
   },
   {
     id: "address",
     label: "VISIT US",
     icon: MapPin,
     lines: [
-      "110 Golden Plaza, Midtown District,",
-      "Manhattan, NY 10019",
+      "Rotary Function Hall,",
+      "Sai Priya Nagar,",
+      "beside Howard School",
+      "Nizamabad, Telangana, 503001",
     ],
   },
   {
     id: "hours",
     label: "HOURS",
     icon: Clock,
-    lines: ["Mon – Sat: 09:00 – 20:00", "Sun: By Appointment"],
+    lines: ["Mon – Sat: 09:00 AM – 06:00 PM", "Sun: By Appointment"],
   },
 ] as const;
 
@@ -70,7 +72,7 @@ export const FOOTER_SOCIAL_LINKS: readonly FooterSocialLink[] = [
   { label: "Instagram", href: "https://instagram.com", icon: InstagramIcon },
   { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
   { label: "Twitter", href: "https://twitter.com", icon: TwitterIcon },
-  { label: "Email", href: "mailto:concierge@megaevents.com", icon: MailIcon },
+  { label: "Email", href: "mailto:megaevents.contact@gmail.com", icon: MailIcon },
 ] as const;
 
 export const FOOTER_LEGAL_LINKS: readonly FooterLink[] = [

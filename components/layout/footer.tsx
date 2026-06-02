@@ -17,9 +17,9 @@ export default function Footer() {
   return (
     <footer className="bg-black text-on-surface-variant">
       <div className="mx-auto max-w-container-max px-margin-mobile py-14 md:px-margin-desktop md:py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+        <div className="grid gap-y-12 md:grid-cols-2 md:gap-x-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-x-12 xl:gap-x-16">
           {/* Brand */}
-          <div>
+          <div className="min-w-0">
             <Link
               href="/"
               className="font-logo text-xl tracking-[0.1em] font-semibold text-secondary-fixed uppercase md:text-2xl"
@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
 
           {/* Quick links */}
-          <div>
+          <div className="min-w-0">
             <h3 className="w-fit border-b border-secondary-fixed pb-2 font-headline-md text-lg font-medium text-on-surface">
               Quick Links
             </h3>
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="min-w-0">
             <h3 className="w-fit border-b border-secondary-fixed pb-2 font-headline-md text-lg font-medium text-on-surface">
               Contact Information
             </h3>
@@ -98,7 +98,7 @@ export default function Footer() {
           </div>
 
           {/* Map */}
-          <div>
+          <div className="min-w-0">
             <h3 className="w-fit border-b border-secondary-fixed pb-2 font-headline-md text-lg font-medium text-on-surface">
               Visit Our Location
             </h3>

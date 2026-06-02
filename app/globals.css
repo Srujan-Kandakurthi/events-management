@@ -251,6 +251,22 @@
     color: var(--color-on-surface);
   }
 
+  .header-blur {
+    background: rgb(13 17 23 / 72%);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-bottom: 1px solid rgb(255 255 255 / 12%);
+    box-shadow: 0 8px 32px rgb(0 0 0 / 45%);
+    color: var(--color-on-surface);
+    isolation: isolate;
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    .header-blur {
+      background: rgb(13 17 23 / 55%);
+    }
+  }
+
   .glass-panel {
     background: rgb(255 255 255 / 16%);
     backdrop-filter: blur(28px) saturate(160%);
@@ -263,9 +279,9 @@
   }
 
   .panel-dark-solid {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    box-shadow: 0 20px 48px rgb(0 0 0 / 50%);
+    background-color: #0d1117;
+    border: 1px solid #484f58;
+    box-shadow: 0 24px 56px rgb(0 0 0 / 65%);
     color: var(--color-on-surface);
   }
 
@@ -289,8 +305,8 @@
   }
 
   .card-dark-solid {
-    background-color: #21262d;
-    border: 1px solid #30363d;
+    background-color: #161b22;
+    border: 1px solid #484f58;
     transition:
       background-color 0.25s ease,
       border-color 0.25s ease,
@@ -298,9 +314,21 @@
   }
 
   .card-dark-solid:hover {
-    background-color: #2a313c;
+    background-color: #21262d;
     border-color: #d4af37;
-    box-shadow: 0 8px 20px rgb(0 0 0 / 35%);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 45%);
+  }
+
+  .services-menu-link {
+    background: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .services-menu-link:hover,
+  .services-menu-link:focus,
+  .services-menu-link[data-active] {
+    background: transparent !important;
   }
 
   .gold-text-gradient {

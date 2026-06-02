@@ -42,7 +42,7 @@ const ServiceMenuCard = forwardRef<HTMLAnchorElement, ServiceMenuCardProps>(
           <span className="font-label-lg text-label-lg font-semibold text-on-surface uppercase transition-colors group-hover:text-secondary-fixed">
             {name}
           </span>
-          <span className="mt-1.5 line-clamp-2 flex-1 font-body-md text-xs leading-relaxed font-light text-on-surface-variant sm:text-sm">
+          <span className="mt-1.5 line-clamp-2 flex-1 font-body-md text-xs leading-relaxed font-light text-on-surface/85 sm:text-sm">
             {description}
           </span>
         </span>

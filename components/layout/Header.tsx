@@ -1,9 +1,9 @@
 "use client";
 
-import { MenuIcon } from "lucide-react";
+import { ArrowRight, MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -72,10 +72,42 @@ function NavLink({
   );
 }
 
-function ServicesMegaMenu({ active }: { active: boolean }) {
+function ServicesMenuHeader({ onClose }: { onClose?: () => void }) {
+  return (
+    <div className="mb-4 flex items-center justify-between gap-3 border-b border-outline-variant/40 pb-3">
+      <p className="font-label-lg text-label-lg tracking-[0.15em] text-on-surface uppercase">
+        Available Services
+      </p>
+      <Link
+        href="/services"
+        onClick={onClose}
+        className="inline-flex shrink-0 items-center gap-1.5 bg-secondary-fixed px-3.5 py-2 font-label-sm text-label-sm font-semibold text-on-primary uppercase transition-opacity hover:opacity-90"
+      >
+        View all
+        <ArrowRight className="size-3.5" strokeWidth={2.25} aria-hidden />
+      </Link>
+    </div>
+  );
+}
+
+function ServicesMegaMenu({
+  active,
+  isOpen,
+  onClose,
+}: {
+  active: boolean;
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   return (
     <>
       <NavigationMenuTrigger
+        onClick={(event) => {
+          if (isOpen) {
+            event.preventDefault();
+            onClose();
+          }
+        }}
         className={cn(
           navTriggerClass,
           active
@@ -91,24 +123,22 @@ function ServicesMegaMenu({ active }: { active: boolean }) {
           />
         ) : null}
       </NavigationMenuTrigger>
-      <NavigationMenuContent>
-        <div className="w-[min(100vw-2rem,46rem)] p-5 md:w-[46rem] md:p-6">
-          <div className="mb-4 flex items-center justify-between border-b border-secondary-fixed/15 pb-3">
-            <p className="font-label-lg text-label-lg tracking-[0.15em] text-secondary-fixed uppercase">
-              Available Services
-            </p>
-            <Link
-              href="/services"
-              className="font-label-sm text-label-sm text-on-surface-variant uppercase transition-colors hover:text-secondary-fixed"
-            >
-              View all
-            </Link>
-          </div>
-          <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
+      <NavigationMenuContent className="bg-surface p-0">
+        <div className="w-[min(100vw-2rem,46rem)] bg-surface p-5 md:w-[46rem] md:p-6">
+          <ServicesMenuHeader onClose={onClose} />
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3">
             {FEATURED_NAV_SERVICES.map((service) => (
               <li key={service.id} className="flex h-full">
-                <NavigationMenuLink asChild className="h-full w-full">
-                  <ServiceMenuCard {...service} variant="dark" className="w-full" />
+                <NavigationMenuLink
+                  asChild
+                  className="services-menu-link h-full w-full"
+                >
+                  <ServiceMenuCard
+                    {...service}
+                    variant="dark"
+                    className="w-full p-5"
+                    onNavigate={onClose}
+                  />
                 </NavigationMenuLink>
               </li>
             ))}
@@ -123,7 +153,14 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navMenuValue, setNavMenuValue] = useState("");
   const servicesActive = isNavActive(pathname, "/services");
+
+  const closeNavMenu = () => setNavMenuValue("");
+
+  useEffect(() => {
+    setNavMenuValue("");
+  }, [pathname]);
 
   return (
     <header
@@ -132,8 +169,8 @@ export default function Header() {
         isHome ? "pointer-events-none absolute" : "sticky",
       )}
     >
-      <div className="pointer-events-auto mx-auto max-w-container-max px-margin-mobile pt-4 sm:pt-5 md:px-margin-desktop">
-        <div className="glass-navbar relative flex h-16 items-center justify-between rounded-full px-5 sm:px-6 md:h-[4.5rem] md:px-8 lg:px-10">
+      <div className="header-blur pointer-events-auto w-full overflow-visible">
+        <div className="relative mx-auto flex h-16 max-w-container-max items-center justify-between overflow-visible px-margin-mobile md:h-[4.5rem] md:px-margin-desktop">
         <Link
           href="/"
           className="relative z-10 shrink-0 font-logo text-logo font-semibold text-secondary-fixed uppercase"
@@ -142,14 +179,20 @@ export default function Header() {
         </Link>
 
         <NavigationMenu
-          className="absolute top-1/2 left-1/2 z-0 hidden -translate-x-1/2 -translate-y-1/2 md:flex"
+          value={navMenuValue}
+          onValueChange={setNavMenuValue}
+          className="absolute top-1/2 left-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 md:flex"
         >
           <NavigationMenuList className="gap-2 lg:gap-3">
             {MAIN_NAV_ITEMS.map((item) => {
               if (item.type === "services") {
                 return (
-                  <NavigationMenuItem key={item.href}>
-                    <ServicesMegaMenu active={servicesActive} />
+                  <NavigationMenuItem key={item.href} value="services">
+                    <ServicesMegaMenu
+                      active={servicesActive}
+                      isOpen={navMenuValue === "services"}
+                      onClose={closeNavMenu}
+                    />
                   </NavigationMenuItem>
                 );
               }
@@ -171,7 +214,7 @@ export default function Header() {
         <div className="relative z-10 flex shrink-0 items-center gap-3 sm:gap-4">
           <Link
             href="/contact-us"
-            className="hidden rounded-full border border-secondary-fixed bg-transparent px-5 py-2.5 font-label-lg text-label-lg text-secondary-fixed uppercase transition-colors hover:bg-secondary-fixed/10 sm:inline-block"
+            className="hidden border border-secondary-fixed bg-transparent px-5 py-2.5 font-label-lg text-label-lg text-secondary-fixed uppercase transition-colors hover:bg-secondary-fixed/10 sm:inline-block"
           >
             BOOK NOW
           </Link>
@@ -181,7 +224,7 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon-lg"
-                className="size-11 rounded-full border border-white/25 bg-white/15 text-secondary-fixed backdrop-blur-md hover:border-secondary-fixed/50 hover:bg-white/25 hover:text-secondary-fixed md:hidden"
+                className="size-11 border border-white/25 bg-white/10 text-secondary-fixed backdrop-blur-sm hover:border-secondary-fixed/50 hover:bg-white/20 hover:text-secondary-fixed md:hidden"
                 aria-label="Open menu"
               >
                 <MenuIcon className="size-6" strokeWidth={1.5} />
@@ -215,30 +258,19 @@ export default function Header() {
                     }
 
                     return (
-                      <div key={item.href} className="mt-4">
-                        <p className="font-label-lg text-label-lg text-secondary-fixed uppercase">
-                          {item.label}
-                        </p>
-                        <ul className="mt-3 grid grid-cols-1 gap-2.5">
+                      <div key={item.href} className="mt-6">
+                        <ServicesMenuHeader onClose={() => setMenuOpen(false)} />
+                        <ul className="grid grid-cols-1 gap-3">
                           {FEATURED_NAV_SERVICES.map((service) => (
                             <li key={service.id} className="flex h-full">
                               <ServiceMenuCard
                                 {...service}
                                 variant="dark"
                                 onNavigate={() => setMenuOpen(false)}
-                                className="w-full"
+                                className="w-full p-5"
                               />
                             </li>
                           ))}
-                          <li className="pt-2">
-                            <Link
-                              href="/services"
-                              onClick={() => setMenuOpen(false)}
-                              className="font-label-sm text-label-sm text-secondary-fixed uppercase"
-                            >
-                              View all services →
-                            </Link>
-                          </li>
                         </ul>
                       </div>
                     );

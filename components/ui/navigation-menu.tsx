@@ -102,13 +102,13 @@ function NavigationMenuViewport({
   return (
     <div
       className={cn(
-        "absolute top-full left-0 isolate z-50 flex justify-center"
+        "absolute top-full left-0 isolate z-[100] flex justify-center"
       )}
     >
       <NavigationMenuPrimitive.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
-          "panel-dark-solid origin-top-center relative mt-3 h-(--radix-navigation-menu-viewport-height) w-full overflow-hidden rounded-xl shadow-none ring-0 duration-100 md:w-(--radix-navigation-menu-viewport-width) data-open:animate-in data-open:zoom-in-90 data-closed:animate-out data-closed:zoom-out-90",
+          "panel-dark-solid bg-surface origin-top-center relative mt-3 h-(--radix-navigation-menu-viewport-height) w-full overflow-hidden rounded-xl border border-outline shadow-2xl ring-0 duration-100 md:w-(--radix-navigation-menu-viewport-width) data-open:animate-in data-open:zoom-in-90 data-closed:animate-out data-closed:zoom-out-90",
           className
         )}
         {...props}
