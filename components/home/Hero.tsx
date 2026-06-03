@@ -10,7 +10,7 @@ import { sectionEyebrowClass } from "@/lib/section-styles";
 function StatItem({ value, label }: HeroMetric) {
   return (
     <div className="flex min-w-0 flex-col items-center px-1 text-center md:flex-1 md:px-2">
-      <span className="gold-text-gradient font-headline-lg text-[1.75rem] leading-none font-semibold sm:text-headline-md md:text-headline-lg">
+      <span className="gold-text-gradient font-headline-lg text-[1.75rem] leading-none font-semibold sm:text-headline-md md:text-[2.5rem] lg:text-headline-lg">
         {value}
       </span>
       <span className="mt-1.5 max-w-[11rem] font-label-sm text-[10px] leading-snug tracking-[0.12em] text-on-surface-variant uppercase sm:mt-2 sm:max-w-none sm:text-label-sm sm:tracking-[0.2em]">
@@ -37,22 +37,19 @@ export default function Hero() {
       />
 
       {/* Hero content scrolls when needed; my-auto centers copy when space allows */}
-      <div className="relative z-10 flex min-h-dvh flex-col pt-[4.25rem] pb-3 md:pt-[5.75rem] md:pb-6 lg:pt-28 lg:pb-8">
+      <div className="relative z-10 flex min-h-dvh flex-col pt-[3.75rem] pb-3 md:pt-[5.75rem] md:pb-6 lg:pt-28 lg:pb-8">
         <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto px-margin-mobile md:px-margin-desktop">
-          <div className="my-auto flex w-full flex-col items-center py-3 text-center md:py-6 lg:py-8">
+          <div className="my-auto flex w-full flex-col items-center pt-0 pb-3 text-center md:py-6 lg:py-8">
           <p className={cn(sectionEyebrowClass, "mb-2 sm:mb-3")}>
-            ESTABLISHED EXCELLENCE SINCE 2006
+            ESTABLISHED EXCELLENCE SINCE 1993
           </p>
 
-          <h1 className="max-w-full overflow-visible font-headline-lg text-[2rem] leading-tight font-semibold text-on-surface sm:text-[2.25rem] sm:leading-snug md:text-display-lg-mobile md:leading-snug lg:text-display-lg lg:leading-tight">
-            Turning Every
-            <br />
-            Celebration Into An
+          <h1 className="max-w-full overflow-visible font-headline-lg text-[2.5rem] leading-tight font-semibold text-on-surface sm:text-[2.75rem] sm:leading-snug md:text-display-lg-mobile md:leading-snug lg:text-display-lg lg:leading-tight">
+            Your Event.
             <br />
             <span className="gold-text-gradient font-medium italic">
-              Unforgettable
-            </span>{" "}
-            Experience
+              Our Responsibility
+            </span>
           </h1>
 
           <p className="mt-5 max-w-2xl font-body-md text-sm leading-relaxed text-on-surface/90 sm:mt-4 sm:text-body-md [@media(max-height:800px)]:md:mt-2 [@media(max-height:800px)]:md:text-xs">

@@ -211,10 +211,17 @@ function ServicesMegaMenu({
           <span className={navActiveIndicatorClass} aria-hidden />
         ) : null}
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="bg-surface p-0">
-        <div className="w-[min(100vw-2rem,46rem)] bg-surface p-4 sm:p-5 md:w-[46rem] md:p-6">
+      <NavigationMenuContent
+        className={cn(
+          "z-[100] bg-surface p-0 shadow-2xl",
+          "left-1/2 max-w-[calc(100vw-1.5rem)] -translate-x-1/2",
+          "md:fixed md:top-16 md:w-[min(calc(100vw-1.5rem),42rem)]",
+          "lg:absolute lg:top-full lg:mt-1.5 lg:w-[min(calc(100vw-2rem),46rem)]",
+        )}
+      >
+        <div className="bg-surface p-4 md:p-5 lg:p-6">
           <ServicesMenuHeader onClose={onClose} />
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3">
+          <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-3">
             {FEATURED_NAV_SERVICES.map((service) => (
               <li key={service.id} className="flex h-full">
                 <NavigationMenuLink
@@ -277,7 +284,8 @@ export default function Header() {
         <NavigationMenu
           value={navMenuValue}
           onValueChange={setNavMenuValue}
-          className="z-50 hidden md:col-start-2 md:row-start-1 md:flex md:justify-self-center"
+          viewport={false}
+          className="z-50 hidden md:col-start-2 md:row-start-1 md:flex md:max-w-full md:justify-self-center"
         >
           <NavigationMenuList className="gap-0.5 md:gap-1 lg:gap-2 xl:gap-3">
             {MAIN_NAV_ITEMS.map((item) => {

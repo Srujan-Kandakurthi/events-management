@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import MainShell from "@/components/layout/MainShell";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import Footer from "@/components/layout/footer";
+import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import { montserrat, playfairDisplay } from "@/lib/fonts";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Header />
         <MainShell>{children}</MainShell>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );
