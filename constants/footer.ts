@@ -76,7 +76,7 @@ export function getGmailComposeUrl(
 }
 
 export const FOOTER_PHONE_NUMBERS: readonly FooterPhoneNumber[] = [
-  { display: "+91 92461 11116", whatsapp: "9192461111116" },
+  { display: "+91 92461 11116", whatsapp: "919246111116" },
   { display: "+91 79015 28809", whatsapp: "917901528809" },
   { display: "+91 94921 40290", whatsapp: "919492140290" },
 ] as const;
