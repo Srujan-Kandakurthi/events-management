@@ -252,19 +252,31 @@
   }
 
   .header-blur {
-    background: rgb(13 17 23 / 72%);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    position: relative;
+    background: rgb(13 17 23 / 96%);
+    backdrop-filter: blur(64px) saturate(200%);
+    -webkit-backdrop-filter: blur(64px) saturate(200%);
     border-bottom: 1px solid rgb(255 255 255 / 12%);
-    box-shadow: 0 8px 32px rgb(0 0 0 / 45%);
+    box-shadow: 0 8px 32px rgb(0 0 0 / 50%);
     color: var(--color-on-surface);
     isolation: isolate;
+    transform: translateZ(0);
   }
 
-  @supports (backdrop-filter: blur(1px)) {
-    .header-blur {
-      background: rgb(13 17 23 / 55%);
-    }
+  .header-blur::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgb(13 17 23 / 72%);
+    backdrop-filter: blur(48px) saturate(200%);
+    -webkit-backdrop-filter: blur(48px) saturate(200%);
+    pointer-events: none;
+  }
+
+  .header-blur > * {
+    position: relative;
+    z-index: 1;
   }
 
   .glass-panel {

@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { forwardRef } from "react";
 
@@ -8,14 +9,50 @@ type ServiceMenuCardProps = ServiceItem & {
   onNavigate?: () => void;
   className?: string;
   variant?: "light" | "dark";
+  compact?: boolean;
 };
 
 const ServiceMenuCard = forwardRef<HTMLAnchorElement, ServiceMenuCardProps>(
   function ServiceMenuCard(
-    { name, description, href, icon: Icon, onNavigate, className, variant = "light" },
+    {
+      name,
+      description,
+      href,
+      icon: Icon,
+      onNavigate,
+      className,
+      variant = "light",
+      compact = false,
+    },
     ref,
   ) {
     const isDark = variant === "dark";
+
+    if (compact) {
+      return (
+        <Link
+          ref={ref}
+          href={href}
+          onClick={onNavigate}
+          className={cn(
+            "group flex min-h-14 w-full items-center gap-3 rounded-lg border border-outline-variant/40 bg-surface-container/40 px-3.5 py-3 transition-colors hover:border-secondary-fixed/50 hover:bg-surface-container-high active:bg-surface-container-high",
+            className,
+          )}
+        >
+          <span className="flex size-10 shrink-0 items-center justify-center border border-secondary-fixed/40 bg-surface text-secondary-fixed">
+            <Icon className="size-[1.125rem]" strokeWidth={1.5} />
+          </span>
+          <span className="min-w-0 flex-1 font-label-sm text-sm font-semibold tracking-[0.08em] text-on-surface uppercase transition-colors group-hover:text-secondary-fixed">
+            {name}
+          </span>
+          <ChevronRight
+            className="size-4 shrink-0 text-on-surface-variant/50 transition-colors group-hover:text-secondary-fixed"
+            strokeWidth={2}
+            aria-hidden
+          />
+        </Link>
+      );
+    }
 
     return (
       <Link

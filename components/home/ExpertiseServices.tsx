@@ -7,6 +7,7 @@ import {
   EXPERTISE_SERVICES,
   type ExpertiseService,
 } from "@/constants/expertise-services";
+import { sectionContentGapClass, sectionEyebrowClass, sectionPaddingClass, sectionTitleClass } from "@/lib/section-styles";
 
 function ExpertiseServiceCard({
   title,
@@ -56,22 +57,22 @@ function ExpertiseServiceCard({
 
 export default function ExpertiseServices() {
   return (
-    <section className="bg-surface py-16 md:py-24">
+    <section className={`bg-surface ${sectionPaddingClass}`}>
       <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="font-label-lg text-label-lg tracking-[0.2em] text-secondary-fixed uppercase">
+          <p className={sectionEyebrowClass}>
             {EXPERTISE_SECTION_COPY.eyebrow}
           </p>
-          <h2 className="mt-3 font-headline-md text-3xl leading-tight font-medium text-on-surface sm:text-headline-md md:text-headline-lg">
+          <h2 className={sectionTitleClass}>
             {EXPERTISE_SECTION_COPY.title}
           </h2>
           <div
-            className="mx-auto mt-4 h-px w-14 bg-secondary-fixed"
+            className="mx-auto mt-3 h-px w-14 bg-secondary-fixed md:mt-4"
             aria-hidden
           />
         </div>
 
-        <ul className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <ul className={`grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 ${sectionContentGapClass}`}>
           {EXPERTISE_SERVICES.map((service) => (
             <li key={service.id}>
               <ExpertiseServiceCard {...service} />
@@ -79,13 +80,13 @@ export default function ExpertiseServices() {
           ))}
         </ul>
 
-        <div className="mt-10 flex justify-center sm:mt-12">
+        <div className="mt-6 flex justify-center sm:mt-12">
           <Link
             href="/services"
-            className="inline-flex min-w-[10rem] items-center justify-center gap-2 border border-secondary-fixed px-8 py-3 font-label-lg text-label-lg font-semibold text-secondary-fixed uppercase transition-colors hover:bg-secondary-fixed/10 sm:min-w-[12.5rem]"
+            className="inline-flex min-w-[7.5rem] items-center justify-center gap-1.5 border border-secondary-fixed px-5 py-2 font-label-lg text-[10px] leading-none font-semibold tracking-[0.08em] text-secondary-fixed uppercase transition-colors hover:bg-secondary-fixed/10 sm:min-w-[12.5rem] sm:gap-2 sm:px-8 sm:py-3 sm:text-label-lg sm:leading-normal sm:tracking-[0.15em]"
           >
             {EXPERTISE_SECTION_COPY.viewMore}
-            <ArrowRight className="size-4" strokeWidth={2.25} aria-hidden />
+            <ArrowRight className="size-3.5 sm:size-4" strokeWidth={2.25} aria-hidden />
           </Link>
         </div>
       </div>
