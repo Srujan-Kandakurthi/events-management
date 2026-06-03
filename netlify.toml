@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback — unknown routes serve index.html (existing pages still resolve first).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
