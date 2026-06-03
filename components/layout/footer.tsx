@@ -8,6 +8,8 @@ import {
   FOOTER_MAP_DIRECTIONS_URL,
   FOOTER_QUICK_LINKS,
   FOOTER_SOCIAL_LINKS,
+  getGmailComposeUrl,
+  getWhatsAppUrl,
 } from "@/constants/footer";
 import { cn } from "@/lib/utils";
 import { EVENT_NAME } from "@/utils/utils";
@@ -75,7 +77,7 @@ export default function Footer() {
               Contact Information
             </h3>
             <ul className="mt-5 space-y-4 md:mt-6 md:space-y-5">
-              {FOOTER_CONTACT_ITEMS.map(({ id, label, icon: Icon, lines }) => (
+              {FOOTER_CONTACT_ITEMS.map(({ id, label, icon: Icon, lines, phoneNumbers }) => (
                 <li key={id} className="flex gap-2.5 md:gap-3">
                   <span className="mt-0.5 shrink-0 text-secondary-fixed">
                     <Icon className="size-3.5 md:size-4" strokeWidth={1.5} />
@@ -84,6 +86,19 @@ export default function Footer() {
                     <span className="block font-label-sm text-[10px] tracking-[0.1em] text-secondary-fixed uppercase md:text-label-sm md:tracking-[0.12em]">
                       {label}
                     </span>
+                    {phoneNumbers?.map((phone) => (
+                      <a
+                        key={phone.whatsapp}
+                        href={getWhatsAppUrl(phone.whatsapp)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(
+                          "mt-0.5 block font-body-md text-xs leading-relaxed text-on-surface transition-colors hover:text-secondary-fixed md:text-sm",
+                        )}
+                      >
+                        {phone.display}
+                      </a>
+                    ))}
                     {lines.map((line) => {
                       const lineClassName = cn(
                         "mt-0.5 block font-body-md text-xs leading-relaxed text-on-surface md:text-sm",
@@ -94,7 +109,9 @@ export default function Footer() {
                         return (
                           <a
                             key={line}
-                            href={`mailto:${line}`}
+                            href={getGmailComposeUrl(line)}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={cn(
                               lineClassName,
                               "transition-colors hover:text-secondary-fixed",
