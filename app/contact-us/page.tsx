@@ -1,9 +1,5 @@
-import { Button } from "@/components/ui/button";
+import InquiryForm from "@/components/home/InquiryForm";
 
-export default function Home() {
-  return (
-    <main className="">
-        <h1 className="text-3xl">Contact Us Page</h1>
-    </main>
-  );
+export default function ContactUsPage() {
+  return <InquiryForm />;
 }
