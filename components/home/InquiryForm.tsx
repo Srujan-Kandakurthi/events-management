@@ -1,20 +1,25 @@
 "use client";
 
 import { format } from "date-fns";
-import { CalendarIcon, Headset } from "lucide-react";
-import { type FormEvent, useState } from "react";
+import { CalendarIcon, CheckCircle2, Headset } from "lucide-react";
+import { type FormEvent, useEffect, useState } from "react";
 
 import { Calendar } from "@/components/ui/calendar";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import {
-  INQUIRY_EMAIL_SUBJECT,
   INQUIRY_FORM_COPY,
 } from "@/constants/inquiry-form";
-import { FOOTER_EMAIL, getGmailComposeUrl } from "@/constants/footer";
 import {
   sectionContentGapClass,
   sectionPaddingClass,
@@ -28,10 +33,6 @@ type InquiryFormData = {
   location: string;
   city: string;
   vision: string;
-};
-
-type InquiryEmailData = InquiryFormData & {
-  eventDate: string;
 };
 
 const initialFormData: InquiryFormData = {
@@ -48,22 +49,6 @@ const labelClassName =
 
 const inputClassName =
   "w-full border-0 border-b border-outline-variant/50 bg-transparent px-0 py-2.5 font-body-md text-sm text-on-surface outline-none transition-colors placeholder:text-on-surface-variant/45 focus:border-secondary-fixed sm:py-3 sm:text-base";
-
-function buildInquiryEmailBody(data: InquiryEmailData): string {
-  return [
-    "New Bespoke Concierge Inquiry",
-    "",
-    `Full Name: ${data.fullName}`,
-    `Email: ${data.email}`,
-    `Phone: ${data.phone}`,
-    `Current Location: ${data.location}`,
-    `City to Plan: ${data.city}`,
-    `Preferred Event Date: ${data.eventDate}`,
-    "",
-    "Vision:",
-    data.vision,
-  ].join("\n");
-}
 
 function FormField({
   id,
@@ -179,28 +164,68 @@ function EventDateField({
 export default function InquiryForm() {
   const [formData, setFormData] = useState<InquiryFormData>(initialFormData);
   const [eventDate, setEventDate] = useState<Date>();
+  const [successOpen, setSuccessOpen] = useState(false);
   const { fields } = INQUIRY_FORM_COPY;
+
+  useEffect(() => {
+    if (!successOpen) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setSuccessOpen(false);
+    }, INQUIRY_FORM_COPY.successAutoCloseSeconds * 1000);
+
+    return () => window.clearTimeout(timer);
+  }, [successOpen]);
 
   const updateField = (field: keyof InquiryFormData, value: string) => {
     setFormData((current) => ({ ...current, [field]: value }));
   };
 
+  const resetForm = () => {
+    setFormData(initialFormData);
+    setEventDate(undefined);
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const inquiryUrl = getGmailComposeUrl(FOOTER_EMAIL, {
-      subject: INQUIRY_EMAIL_SUBJECT,
-      body: buildInquiryEmailBody({
-        ...formData,
-        eventDate: eventDate ? format(eventDate, "PPP") : "Not selected",
-      }),
-    });
-
-    window.open(inquiryUrl, "_blank", "noopener,noreferrer");
+    resetForm();
+    setSuccessOpen(true);
   };
 
   return (
-    <section className={cn("relative overflow-hidden bg-surface", sectionPaddingClass)}>
+    <>
+      <Dialog
+        open={successOpen}
+        onOpenChange={(open) => {
+          if (open) {
+            setSuccessOpen(true);
+          }
+        }}
+      >
+        <DialogContent
+          showCloseButton={false}
+          onInteractOutside={(event) => event.preventDefault()}
+          onEscapeKeyDown={(event) => event.preventDefault()}
+          className="card-dark-solid border border-outline-variant/50 bg-surface px-6 py-8 text-on-surface sm:max-w-md"
+        >
+          <DialogHeader className="items-center gap-4 text-center">
+            <CheckCircle2
+              className="size-16 text-green-500 sm:size-[4.5rem]"
+              strokeWidth={1.5}
+            />
+            <DialogTitle className="font-headline-md text-xl font-medium text-on-surface sm:text-2xl">
+              {INQUIRY_FORM_COPY.successTitle}
+            </DialogTitle>
+            <DialogDescription className="font-body-md text-sm leading-relaxed text-on-surface-variant sm:text-base">
+              {INQUIRY_FORM_COPY.successMessage}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
+      <section className={cn("relative overflow-hidden bg-surface", sectionPaddingClass)}>
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgb(212_175_55/0.1),transparent_58%)]"
         aria-hidden
@@ -319,5 +344,6 @@ export default function InquiryForm() {
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -8,6 +8,10 @@ export const INQUIRY_FORM_COPY = {
   supportSubtitleBefore: "Ensuring response within",
   supportSubtitleHighlight: "24 hours",
   submitLabel: "Submit Inquiry",
+  successTitle: "Inquiry Submitted Successfully!",
+  successMessage:
+    "Thank you for reaching out. Our respective team member will callback you shortly.",
+  successAutoCloseSeconds: 5,
   fields: {
     fullName: {
       label: "Full Name",
