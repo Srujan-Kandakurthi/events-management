@@ -29,9 +29,9 @@ export const INQUIRY_FORM_COPY = {
       label: "Current Location",
       placeholder: "Where are you based?",
     },
-    city: {
-      label: "City You Wish to Plan",
-      placeholder: "Which city is your event in?",
+    venue: {
+      label: "Venue You Wish to Plan",
+      placeholder: "Which venue is your event in?",
     },
     eventDate: {
       label: "Preferred Event Date",

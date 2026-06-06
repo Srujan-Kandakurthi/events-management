@@ -7,6 +7,8 @@ import Footer from "@/components/layout/footer";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import { montserrat, playfairDisplay } from "@/lib/fonts";
 
+import { Toaster } from "@/components/ui/sonner";
+
 export const metadata: Metadata = {
   title: "Mega Events",
   description: "Event Planning Services",
@@ -28,6 +30,7 @@ export default function RootLayout({
         <MainShell>{children}</MainShell>
         <Footer />
         <WhatsAppFloat />
+        <Toaster />
       </body>
     </html>
   );

@@ -19,7 +19,7 @@ function ExpertiseServiceCard({
   return (
     <Link
       href={href}
-      className="expertise-card group relative block aspect-[3/4] min-h-[17.5rem] overflow-hidden border border-transparent sm:min-h-[20rem] lg:min-h-[22rem]"
+      className="expertise-card group relative block aspect-[4/3] min-h-[12rem] overflow-hidden border border-transparent sm:aspect-[3/4] sm:min-h-[20rem] lg:min-h-[22rem]"
     >
       <Image
         src={image}

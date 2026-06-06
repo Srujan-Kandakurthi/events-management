@@ -1,17 +1,12 @@
 "use client";
 
 import { ArrowRight, ChevronDown, MenuIcon, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -29,6 +24,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import ServiceMenuCard from "@/components/layout/ServiceMenuCard";
+import { FOOTER_PHONE_NUMBERS, getWhatsAppUrl } from "@/constants/footer";
 import { MAIN_NAV_ITEMS } from "@/constants/navigation";
 import {
   ALL_SERVICES,
@@ -36,6 +32,8 @@ import {
 } from "@/constants/services";
 import { cn } from "@/lib/utils";
 import { EVENT_NAME } from "@/utils/utils";
+
+const mobileWhatsAppUrl = getWhatsAppUrl(FOOTER_PHONE_NUMBERS[1].whatsapp);
 
 function isNavActive(pathname: string, href: string) {
   if (href === "/") {
@@ -108,6 +106,7 @@ function MobileNavLinks({
   pathname: string;
   onNavigate: () => void;
 }) {
+  const [servicesOpen, setServicesOpen] = useState(false);
   const servicesActive = isNavActive(pathname, "/services");
 
   return (
@@ -116,45 +115,48 @@ function MobileNavLinks({
         if (item.type === "services") {
           return (
             <li key={item.href}>
-              <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    type="button"
-                    className={cn(
-                      mobileNavLinkClass,
-                      "w-full justify-between pr-2 outline-none",
-                      servicesActive
-                        ? "border-secondary-fixed font-semibold text-secondary-fixed"
-                        : "border-transparent text-on-surface-variant hover:text-on-surface",
-                    )}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className="size-3.5 shrink-0 opacity-60"
-                      strokeWidth={2}
-                      aria-hidden
-                    />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="start"
-                  side="bottom"
-                  sideOffset={4}
-                  className="z-[60] max-h-56 w-(--radix-dropdown-menu-trigger-width) overflow-y-auto border border-outline-variant/40 bg-surface-container-high p-1 shadow-lg"
+              <button
+                type="button"
+                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen((open) => !open)}
+                className={cn(
+                  mobileNavLinkClass,
+                  "w-full justify-between pr-2 outline-none",
+                  servicesActive || servicesOpen
+                    ? "border-secondary-fixed font-semibold text-secondary-fixed"
+                    : "border-transparent text-on-surface-variant hover:text-on-surface",
+                )}
+              >
+                {item.label}
+                <ChevronDown
+                  className={cn(
+                    "size-3.5 shrink-0 opacity-60 transition-transform duration-200",
+                    servicesOpen && "rotate-180",
+                  )}
+                  strokeWidth={2}
+                  aria-hidden
+                />
+              </button>
+              {servicesOpen ? (
+                <div
+                  className="ml-3 mt-0.5 max-h-[min(50dvh,14rem)] touch-pan-y overflow-y-auto overscroll-y-contain border-l border-outline-variant/30 pl-2 [-webkit-overflow-scrolling:touch]"
+                  onTouchMove={(event) => event.stopPropagation()}
                 >
-                  {ALL_SERVICES.map((service) => (
-                    <DropdownMenuItem key={service.id} asChild>
-                      <Link
-                        href={service.href}
-                        onClick={onNavigate}
-                        className="cursor-pointer py-1.5 text-[10px] tracking-[0.05em] text-on-surface-variant uppercase focus:bg-surface-container focus:text-on-surface"
-                      >
-                        {service.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                  <ul className="space-y-0.5 py-1">
+                    {ALL_SERVICES.map((service) => (
+                      <li key={service.id}>
+                        <Link
+                          href={service.href}
+                          onClick={onNavigate}
+                          className="block py-2 pr-1 text-[11px] tracking-[0.06em] text-on-surface-variant uppercase transition-colors hover:text-on-surface sm:text-xs"
+                        >
+                          {service.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
             </li>
           );
         }
@@ -370,7 +372,7 @@ export default function Header() {
                 </nav>
               </div>
 
-              <div className="shrink-0 border-t border-outline-variant/30 bg-surface px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+              <div className="shrink-0 space-y-2 border-t border-outline-variant/30 bg-surface px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
                 <Link
                   href="/contact-us"
                   onClick={() => setMenuOpen(false)}
@@ -378,6 +380,22 @@ export default function Header() {
                 >
                   Book now
                 </Link>
+                <a
+                  href={mobileWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex min-h-10 w-full items-center justify-center gap-2 border border-[#25D366]/60 bg-[#25D366]/10 font-label-lg text-xs font-semibold tracking-[0.08em] text-[#25D366] uppercase transition-colors hover:bg-[#25D366]/20"
+                >
+                  <Image
+                    src="/assets/images/whatsapp-logo.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="size-5 shrink-0 rounded-full object-cover"
+                  />
+                  Chat on WhatsApp
+                </a>
               </div>
             </SheetContent>
           </Sheet>

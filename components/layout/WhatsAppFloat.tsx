@@ -11,13 +11,13 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contact us on WhatsApp"
-      className="fixed right-4 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 flex size-14 shrink-0 items-center justify-center rounded-full shadow-[0_4px_20px_rgb(0_0_0/35%)] transition-transform hover:scale-105 active:scale-95 sm:right-5 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] sm:size-16 md:size-[4.25rem]"
+      className="fixed right-4 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 flex size-[60px] shrink-0 items-center justify-center rounded-full shadow-[0_4px_16px_rgb(0_0_0/35%)] transition-transform hover:scale-105 active:scale-95 sm:right-5 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] md:size-[44px]"
     >
       <Image
         src="/assets/images/whatsapp-logo.png"
         alt=""
-        width={68}
-        height={68}
+        width={60}
+        height={60}
         className="size-full rounded-full object-cover"
       />
     </a>
