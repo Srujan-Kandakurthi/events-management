@@ -16,7 +16,7 @@ export default function MainShell({
     <main
       className={cn(
         "flex-1 font-body-md text-body-md",
-        !isHome && "pt-14 sm:pt-16 lg:pt-[4.5rem]",
+        !isHome && "pt-14 sm:pt-16 lg:pt-18",
       )}
     >
       <MobilePageBack />

@@ -6,6 +6,8 @@ const SERVICES = [
   "wedding-planners",
 ];
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const defaultUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://megaevents.in";
 
