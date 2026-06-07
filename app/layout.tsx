@@ -24,11 +24,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Mega Events",
+    images: [
+      {
+        url: "/assets/images/mega-events-logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mega Events Luxury Event Planning",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mega Events - Premier Event Planners",
     description: "Crafting extraordinary luxury events across Telangana.",
+    images: ["/assets/images/mega-events-logo.jpg"],
   },
 };
 
