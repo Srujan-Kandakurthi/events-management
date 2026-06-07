@@ -1,7 +1,16 @@
+import { Metadata } from "next";
 import Link from "next/link";
 
 import { ALL_SERVICES } from "@/constants/services";
 import { sectionEyebrowClass, sectionTitleClass } from "@/lib/section-styles";
+
+export const metadata: Metadata = {
+  title: "Event Planning Services | Mega Events Telangana",
+  description: "Explore our comprehensive event management services including luxury weddings, corporate gatherings, birthday celebrations, and traditional ceremonies across Telangana.",
+  alternates: {
+    canonical: "/services",
+  },
+};
 
 export default function ServicesPage() {
   return (

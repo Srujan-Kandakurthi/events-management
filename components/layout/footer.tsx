@@ -13,6 +13,7 @@ import {
 } from "@/constants/footer";
 import { cn } from "@/lib/utils";
 import { EVENT_NAME } from "@/utils/utils";
+import { TELANGANA_DISTRICTS, unslugifyLocation } from "@/constants/seo-locations";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -158,6 +159,23 @@ export default function Footer() {
               Get Directions
             </a>
           </div>
+        </div>
+
+        {/* SEO Locations Block */}
+        <div className="mt-12 border-t border-outline-variant/40 pt-8">
+          <h3 className="font-headline-md text-sm font-medium text-on-surface mb-4">Locations Served in Telangana</h3>
+          <ul className="flex flex-wrap gap-x-4 gap-y-2">
+            {TELANGANA_DISTRICTS.map((district) => (
+              <li key={district}>
+                <Link
+                  href={`/event-planners/${district}`}
+                  className="font-body-md text-xs text-on-surface-variant transition-colors hover:text-secondary-fixed"
+                >
+                  Event Planners in {unslugifyLocation(district)}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-outline-variant/40 pt-5 text-xs md:mt-12 md:flex-row md:gap-4 md:pt-6 md:text-sm">
