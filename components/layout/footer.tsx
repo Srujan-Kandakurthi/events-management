@@ -40,9 +40,9 @@ export default function Footer() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={label}
-                  className="flex size-9 items-center justify-center rounded-lg border border-outline-variant/60 bg-surface/40 text-on-surface transition-colors hover:border-secondary-fixed/50 hover:text-secondary-fixed md:size-10"
+                  className="flex size-11 items-center justify-center rounded-lg border border-outline-variant/60 bg-surface/40 text-on-surface transition-colors hover:border-secondary-fixed/50 hover:text-secondary-fixed md:size-12"
                 >
-                  <Icon className="size-3.5 md:size-4" strokeWidth={1.5} />
+                  <Icon className="size-5 md:size-6" strokeWidth={1.5} />
                 </a>
               ))}
             </div>
@@ -140,14 +140,13 @@ export default function Footer() {
               Visit Our Location
             </h3>
             <div className="relative mt-5 aspect-[4/3] overflow-hidden border border-outline-variant/50 bg-surface-container md:mt-6">
-              <div
-                className="absolute inset-0 bg-[linear-gradient(135deg,#161b22_0%,#0d1117_50%,#1a1f28_100%)]"
-                aria-hidden
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.071044597983!2d78.09576037386326!3d18.660807664878103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcddb845c7ef39d%3A0xd6a2343f56c26fac!2sMega%20events!5e0!3m2!1sen!2sin!4v1780811123630!5m2!1sen!2sin"
+                className="h-full w-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
-              <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                <MapPin className="size-12 text-on-surface-variant md:size-16" strokeWidth={1} />
-              </div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgb(212_175_55/0.08),transparent_55%)]" />
             </div>
             <a
               href={FOOTER_MAP_DIRECTIONS_URL}

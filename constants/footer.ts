@@ -128,7 +128,7 @@ export const FOOTER_LEGAL_LINKS: readonly FooterLink[] = [
 ] as const;
 
 export const FOOTER_MAP_DIRECTIONS_URL =
-  "https://www.google.com/maps/search/?api=1&query=110+Golden+Plaza+Midtown+District+Manhattan+NY+10019";
+  "https://maps.app.goo.gl/8VuaQN3orkwTUagYA";
 
 export const FOOTER_DESCRIPTION =
   "Mega Events is the premier curator of prestigious experiences, merging cinematic elegance with technical precision for high-net-worth celebrations and institutional galas.";

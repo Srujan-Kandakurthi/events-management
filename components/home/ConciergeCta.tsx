@@ -25,7 +25,6 @@ export default function ConciergeCta() {
           <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
           <h2 className="font-headline-md text-2xl leading-tight font-medium text-on-surface sm:text-3xl sm:leading-snug md:text-headline-lg md:leading-snug lg:text-[2.75rem] lg:leading-tight">
             {CONCIERGE_CTA_COPY.titleStart}
-            <br />
             <span className="gold-text-gradient font-medium italic">
               {CONCIERGE_CTA_COPY.titleHighlight}
             </span>
