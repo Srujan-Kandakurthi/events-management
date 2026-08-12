@@ -27,6 +27,7 @@ import {
 } from "@/lib/section-styles";
 import { cn } from "@/lib/utils";
 import { FOOTER_PHONE_NUMBERS, getWhatsAppUrl } from "@/constants/footer";
+import ContactService from "@/app/contact-us/(api)/contact.service";
 
 type InquiryFormData = {
   fullName: string;
@@ -214,7 +215,7 @@ export default function InquiryForm() {
     setEventDate(undefined);
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
     setIsSubmitting(true);
     setFieldErrors({});
@@ -229,9 +230,7 @@ export default function InquiryForm() {
     if (!payload.vision) delete payload.vision;
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-      await axios.post(`${apiUrl}/visitors`, payload);
-
+      const response = await ContactService.createInquiry(payload);
       resetForm();
       setSuccessOpen(true);
     } catch (error: any) {

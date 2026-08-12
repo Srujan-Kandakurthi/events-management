@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
-import Hero from "@/components/home/Hero";
-import ExpertiseServices from "@/components/home/ExpertiseServices";
-import ConciergeCta from "@/components/home/ConciergeCta";
+import Hero from "@/app/(home)/components/Hero";
+import ExpertiseServices from "@/app/(home)/components/ExpertiseServices";
+import ConciergeCta from "@/app/(home)/components/ConciergeCta";
 
 import { TELANGANA_DISTRICTS, unslugifyLocation } from "@/constants/seo-locations";
 

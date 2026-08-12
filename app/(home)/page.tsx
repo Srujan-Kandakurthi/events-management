@@ -1,7 +1,7 @@
-import BeforeAfterSlider from "@/components/home/BeforeAfterSlider";
-import ConciergeCta from "@/components/home/ConciergeCta";
-import ExpertiseServices from "@/components/home/ExpertiseServices";
-import Hero from "@/components/home/Hero";
+import BeforeAfterSlider from "@/app/(home)/components/BeforeAfterSlider";
+import ConciergeCta from "@/app/(home)/components/ConciergeCta";
+import ExpertiseServices from "@/app/(home)/components/ExpertiseServices";
+import Hero from "@/app/(home)/components/Hero";
 
 export default function Home() {
   return (

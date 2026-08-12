@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import InquiryForm from "@/components/home/InquiryForm";
+import InquiryForm from "@/app/(home)/components/InquiryForm";
 
 export const metadata: Metadata = {
   title: "Contact Us | Mega Events Nizamabad",
